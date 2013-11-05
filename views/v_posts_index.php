@@ -1,13 +1,17 @@
 <?php foreach($posts as $post): ?>
 
 <article>
+   
+    <?php if($post['user_id'] == $user->user_id): ?>
+	<h3>You posted:
+    <?php else: ?>
+    	<h3><?php echo $post['first_name']?> <?php echo $post['last_name']?> posted:</h3>
+    <?php endif ?>
 
-    <h1><?=$post['first_name']?> <?=$post['last_name']?> posted:</h1>
+    <p><?php echo $post['content']?></p>
 
-    <p><?=$post['content']?></p>
-
-    <time datetime="<?=Time::display($post['created'],'Y-m-d G:i')?>">
-        <?=Time::display($post['created'])?>
+    <time datetime="<?php echo Time::display($post['created'],'Y-m-d G:i')?>">
+        <?php echo Time::display($post['created'])?>
     </time>
 
 </article>

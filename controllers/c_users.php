@@ -7,18 +7,19 @@ class users_controller extends base_controller {
     } 
 
     public function index() {
-        echo "This is the index page";
+        #echo "This is the index page";
+	Router::redirect('/users/login');
     }
 
     public function signup() {
-        #echo "This is the signup page";
-
-	# Setup view
+	if(!$this->user) {
+	    # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
 
-        # Render template
+            # Render template
             echo $this->template;
+	}
     }
 
     public function p_signup() {
@@ -43,20 +44,22 @@ class users_controller extends base_controller {
 
     	# For now, just confirm they've signed up - 
     	# You should eventually make a proper View for this
-    	#echo 'You\'re signed up';
+    	echo 'You\'re signed up';
 
-	Router::redirect('/users/login');
+	#Router::redirect('/users/login');
     }
 
     public function login() {
         #echo "This is the login page";
 
 	# Setup view
-        $this->template->content = View::instance('v_users_login');
-        $this->template->title   = "Login";
+        # $this->template->content = View::instance('v_users_login');
+        # $this->template->title   = "Login";
 
     	# Render template
-        echo $this->template;
+        # echo $this->template;
+
+	Router::redirect('/');
     }
 
     public function p_login() {
@@ -97,7 +100,7 @@ class users_controller extends base_controller {
         	setcookie("token", $token, strtotime('+1 year'), '/');
 
         	# Send them to the main page - or whever you want them to go
-        	Router::redirect("/");
+        	Router::redirect("/users/profile");
 
     	}	
     }
@@ -154,5 +157,4 @@ class users_controller extends base_controller {
     	echo $this->template;
     }
 
-} # end of the class
-	
+} # end of the class	
