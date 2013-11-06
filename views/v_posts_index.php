@@ -9,9 +9,12 @@
 
     		<p><?php echo $post['content']?></p>
 		
-		<form name='delete' id='del_post' method='POST' action='/posts/p_delete/<?=$post['post_id']?>'>
-			<input type='submit' value='Delete' name='delete' class='submit'>
-		</form>
+    		<?php if($user->user_id == $post['user_id']): ?>
+                        
+    			<a class='submit' href='/posts/edit/<?=$post['post_id']?>'>Edit</a>
+         		<a class='submit' href='/posts/delete/<?=$post['post_id']?>'>Delete</a>        
+         		<br />
+         	<?php endif; ?>  
 		<hr />
 	</article>
 </section>

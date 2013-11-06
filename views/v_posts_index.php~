@@ -8,7 +8,10 @@
     		</time>
 
     		<p><?php echo $post['content']?></p>
-		<a href='/posts/p_delete/<?=$post_id?>'>Delete</a>
+		
+		<form name='delete' id='del_post' method='POST' action='/posts/p_delete/<?=$post['post_id']?>'>
+			<input type='submit' value='Delete' name='delete' class='submit'>
+		</form>
 		<hr />
 	</article>
 </section>

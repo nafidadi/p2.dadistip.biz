@@ -40,25 +40,39 @@ class posts_controller extends base_controller {
     }
     
     /*public function delete($post_id) {
+       $where_condition = 'WHERE post_id ='.$post_id;
+       DB::instance(DB_NAME)->delete('posts', $where_condition);
+       
+       
+       Router::redirect('/posts');
+    }  
 
-        # Setup view
-        $this->template->content = View::instance('v_posts_index');
-        #$this->template->title = "Delete Post";
-        $this->template->content->post_id = $post_id;
-
-        # Render template
+    public function edit($post_id) {
+        # Set up view
+        $this->template->content = View::instance("v_posts_edit");
+                
+        
+        $q = 'SELECT * FROM posts where post_id = '.$post_id;
+        $post = DB::instance(DB_NAME)->select_row($q);
+        
+        $this->template->content->post = $post;
+                
+        # Render view
         echo $this->template;
 
-    }*/
-
-    public function p_delete($post_id) {
-
-        $where_condition = 'WHERE post_id = '.$post_id;
-        DB::instance(DB_NAME)->delete('posts', $where_condition);
-
-        Router::redirect("/posts");
-
     }
+    
+    public function p_edit($post_id) {
+                
+	$content = $_POST['content'];
+                                
+        $data = Array('content' => $content);
+        $where_condition = 'WHERE post_id ='.$post_id;
+        DB::instance(DB_NAME)->update('posts', $data, $where_condition);                
+  
+        Router::redirect('/posts/');
+                
+        } */       
 
     public function index() {
 	# Query

@@ -19,7 +19,7 @@
 			<ul>
 				<li><a href='/users/profile'>Home</a></li>
             			<li><a href='/users/profile'>Profile</a></li>
-				<li><a href='/posts'>Posts</a></li>
+				<li><a href='/posts/'>Posts</a></li>
 				<li><a href='/posts/add'>New Post</a></li>
 				<li><a href='/posts/users'>Friends</a></li>
 				<li><a href='/users/logout'>Logout</a></li>
