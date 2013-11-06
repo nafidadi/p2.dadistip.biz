@@ -39,7 +39,7 @@ class posts_controller extends base_controller {
 	Router::redirect("/posts/");
     }
     
-    /*public function delete($post_id) {
+    public function delete($post_id) {
 
         # Setup view
         $this->template->content = View::instance('v_posts_index');
@@ -49,14 +49,15 @@ class posts_controller extends base_controller {
         # Render template
         echo $this->template;
 
-    }*/
+    }
 
-    public function p_delete($post_id) {
+        public function p_delete($post_id) {
 
         $where_condition = 'WHERE post_id = '.$post_id;
         DB::instance(DB_NAME)->delete('posts', $where_condition);
 
-        Router::redirect("/posts");
+            # Send them back
+                Router::redirect("/posts");
 
     }
 

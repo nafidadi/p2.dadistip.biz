@@ -108,6 +108,16 @@ class users_controller extends base_controller {
     }
 
     public function profile($first_name = NULL) {
+	# Create a new View instance
+    	# Do *not* include .php with the view name
+    	#$view = View::instance('v_users_profile');
+
+    	# Pass information to the view instance
+    	#$view->user_name = $user_name;
+
+	# Render View
+	#echo $view;
+
 	# If user is blank, they're not logged in; redirect them to the login page
     	if(!$this->user) {
         	Router::redirect('/users/login');
