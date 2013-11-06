@@ -1,5 +1,5 @@
-<section>
-	<h1>Welcome to <?=APP_NAME?><?php if($user) echo ', '.$user->first_name; ?></h1>
+<section id='welcome'>	
+	<h1>Welcome to <?=APP_NAME?>,</h1>
 	<h3>your stories, tales and jokes!</h3>
 
 	<p>When Posting your stories:</p>

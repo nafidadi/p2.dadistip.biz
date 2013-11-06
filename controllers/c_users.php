@@ -12,14 +12,12 @@ class users_controller extends base_controller {
     }
 
     public function signup() {
-	if(!$this->user) {
 	    # Setup view
             $this->template->content = View::instance('v_users_signup');
             $this->template->title   = "Sign Up";
 
             # Render template
             echo $this->template;
-	}
     }
 
     public function p_signup() {
@@ -123,7 +121,7 @@ class users_controller extends base_controller {
     	Router::redirect("/");
     }
 
-    public function profile($user_name = NULL) {
+    public function profile($first_name = NULL) {
 	# Create a new View instance
     	# Do *not* include .php with the view name
     	#$view = View::instance('v_users_profile');

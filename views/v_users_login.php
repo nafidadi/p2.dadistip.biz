@@ -1,12 +1,10 @@
-<aside>
-	<form name='login' id='login'  method='POST' action='/users/p_login'>
+<section id='login'>
+	<form name='signin' id='signin'  method='POST' action='/users/p_login'>
                 <fieldset>
-                        <legend>Log In</legend>
-                        <label class='login_info'>Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type='email' name='email'>
-                        <br /><br />
-
-                        <label class='login_info'>Password:</label><input type='password' name='password'><br /><br />
+			<h3>tellAtale!</h3>
+                        <input type='email' name='email' value='' placeholder='email' required><br /><br />
+                        <input type='password' name='password' value='' placeholder='password' required><br /><br />
                         <input type='submit' value='Log in' name='action' class='submit'>
                 </fieldset>
 	</form>
-</aside>
+</section>
