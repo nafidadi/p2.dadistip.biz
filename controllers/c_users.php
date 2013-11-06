@@ -27,7 +27,8 @@ class users_controller extends base_controller {
     	$_POST['modified'] = Time::now();
 
 	# Encrypt the password  
-    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);            
+    	$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+	$_POST['last_login'] = Time::now();
 
     	# Create an encrypted token via their email address and a random string
     	$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string()); 
@@ -37,9 +38,9 @@ class users_controller extends base_controller {
 
     	# For now, just confirm they've signed up - 
     	# You should eventually make a proper View for this
-    	echo 'You\'re signed up';
+    	# echo 'You\'re signed up';
 
-	#Router::redirect('/users/login');
+	Router::redirect('/users/login');
     }
 
     public function login() {
@@ -68,6 +69,7 @@ class users_controller extends base_controller {
 
         	# Send them back to the login page
         	Router::redirect("/users/login/");
+		echo 'Try again ... credentials don\'t match!';
 
     	# But if we did, login succeeded! 
     	} else {
@@ -82,6 +84,16 @@ class users_controller extends base_controller {
         	param 4 = the path of the cooke (a single forward slash sets it for the entire domain)
         	*/
         	setcookie("token", $token, strtotime('+1 year'), '/');
+
+		$query = "SELECT user_id 
+                FROM users 
+                WHERE email = '".$_POST['email']."' 
+                AND password = '".$_POST['password']."'";
+
+        	$user_id = DB::instance(DB_NAME)->select_field($query);
+		$data = Array ( "last_login" => Time::now() );
+		$where_condition = "WHERE user_id = '".$user_id."'";
+		DB::instance(DB_NAME)->update('users', $data, $where_condition);
 
         	# Send them to the main page - or whever you want them to go
         	Router::redirect("/users/profile");
